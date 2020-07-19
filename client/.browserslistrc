@@ -1,0 +1,13 @@
+# This query filters out browsers that don't support modern JavaScript and Web APIs, so we don't
+# have to polyfill (i.e., faster build and smaller bundle).
+[production]
+> 0.4% in us
+not ios_saf < 11
+not android > 0
+not ie > 0
+
+# Only support the latest desktop browsers in development.
+[development]
+last 1 chrome version
+last 1 firefox version
+last 1 safari version
