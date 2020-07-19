@@ -1,0 +1,43 @@
+.bounds {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.grid,
+.grid-25,
+.grid-33,
+.grid-66,
+.grid-100 {
+  float: left;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.grid-25 {
+  width: 25%;
+}
+
+.grid-33 {
+  width: 33.3%;
+}
+
+.grid-66 {
+  width: 66.6%;
+}
+
+.grid-100 {
+  width: 100%;
+}
+
+.grid-right {
+  float: right;
+}
+
+.centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.pad-bottom {
+  padding-bottom: 40px;
+}

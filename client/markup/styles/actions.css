@@ -1,0 +1,20 @@
+.actions--bar {
+  border-bottom: 1px solid #d5f9fe;
+  background: #f8feff;
+  padding: 20px 0;
+  margin-top: -30px;
+}
+
+.actions--bar:before,
+.actions--bar:after {
+  content: ' ';
+  display: table;
+}
+
+.actions--bar:after {
+  clear: both;
+}
+
+.actions--bar .button {
+  margin-right: 15px;
+}

@@ -1,0 +1,103 @@
+/* line 5, ../sass/global.sass */
+body {
+  font-family: 'Work Sans', sans-serif;
+  background: #fff;
+}
+
+/* line 57, ../sass/global.sass */
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* line 61, ../sass/global.sass */
+a {
+  color: #7c689b;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -ms-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+}
+
+/* line 66, ../sass/global.sass */
+p {
+  font-family: 'Cousine';
+  margin-bottom: 30px;
+}
+
+/* line 468, ../sass/global.sass */
+textarea {
+  width: 100%;
+  min-height: 300px;
+  border-radius: 8px;
+  background: #fff;
+  padding: 15px;
+  font-size: 16px;
+  margin: 0 0 20px;
+  border: 1px solid #ccc4d8;
+  color: #666;
+  line-height: 1.8;
+  outline: none;
+  font-family: 'Cousine';
+  box-sizing: border-box;
+}
+/* line 29, ../sass/mixins.sass */
+textarea::-webkit-input-placeholder {
+  font-weight: normal;
+  font-size: 16px;
+}
+/* line 31, ../sass/mixins.sass */
+textarea:-moz-placeholder {
+  font-weight: normal;
+  font-size: 16px;
+}
+/* line 33, ../sass/mixins.sass */
+textarea::-moz-placeholder {
+  font-weight: normal;
+  font-size: 16px;
+}
+/* line 35, ../sass/mixins.sass */
+textarea:-ms-input-placeholder {
+  font-weight: normal;
+  font-size: 16px;
+}
+/* line 485, ../sass/global.sass */
+textarea:focus {
+  border-color: #7c689b;
+}
+
+/* line 488, ../sass/global.sass */
+input {
+  width: 100%;
+  color: #332a40;
+  border-radius: 8px;
+  border: 1px solid #ccc4d8;
+  padding: 15px;
+  margin-bottom: 15px;
+  outline: none;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+/* line 29, ../sass/mixins.sass */
+input::-webkit-input-placeholder {
+  font-weight: normal;
+}
+/* line 31, ../sass/mixins.sass */
+input:-moz-placeholder {
+  font-weight: normal;
+}
+/* line 33, ../sass/mixins.sass */
+input::-moz-placeholder {
+  font-weight: normal;
+}
+/* line 35, ../sass/mixins.sass */
+input:-ms-input-placeholder {
+  font-weight: normal;
+}
+/* line 500, ../sass/global.sass */
+input:focus {
+  border-color: #7c689b;
+}

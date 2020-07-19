@@ -1,0 +1,15 @@
+.input-title::-webkit-input-placeholder {
+  font-weight: bold;
+}
+
+.input-title:-moz-placeholder {
+  font-weight: bold;
+}
+
+.input-title::-moz-placeholder {
+  font-weight: bold;
+}
+
+.input-title:-ms-input-placeholder {
+  font-weight: bold;
+}

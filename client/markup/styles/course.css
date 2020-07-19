@@ -1,0 +1,246 @@
+.course--module {
+  background: #7c689b;
+  border-radius: 8px;
+  padding: 30px;
+  margin-bottom: 30px;
+  min-height: 107px;
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.course--module:before,
+.course--module:after {
+  content: ' ';
+  display: table;
+}
+
+.course--module:after {
+  clear: both;
+}
+
+.course--module--title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.course--label {
+  font-family: 'Cousine';
+  font-size: 14px;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+.course--title {
+  font-size: 18px;
+  color: #fff;
+}
+
+.course--link {
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  border: 0;
+}
+
+.course--add--module {
+  background: #eee;
+  text-align: center;
+}
+
+.course--add--module:hover .course--add--title {
+  color: #444;
+}
+
+.course--add--module:hover .add {
+  fill: #444;
+}
+
+.course--add--title {
+  color: #999;
+  display: inline-block;
+  font-size: 18px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -55%);
+  -moz-transform: translate(-50%, -55%);
+  -ms-transform: translate(-50%, -55%);
+  transform: translate(-50%, -55%);
+}
+
+.course--add--title .add {
+  width: 13px;
+  height: auto;
+  margin: 0 5px 0 0;
+  fill: #999;
+}
+
+.course--detail {
+  margin-top: 60px;
+}
+
+.course--header {
+  margin-bottom: 30px;
+}
+
+.course--header .course--label {
+  font-size: 18px;
+  color: #999;
+}
+
+.course--header .course--title {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #332a40;
+}
+
+.course--header p {
+  font-size: 18px;
+  color: #b1a5c4;
+  font-weight: 100;
+}
+
+.course--title--input {
+  font-size: 48px;
+  font-weight: bold;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.course--description {
+  margin-bottom: 30px;
+}
+
+/* .course--description textarea {
+  margin-bottom: 60px;
+} */
+
+.course--description textarea {
+  margin-bottom: 20px;
+}
+
+.course--description p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+}
+
+.course--description ol,
+.course--description ul {
+  list-style-type: none;
+}
+
+.course--description li {
+  position: relative;
+  padding-left: 30px;
+  padding: 30px 0 30px 5%;
+  border-top: 1px solid #ccc;
+  font-size: 16px;
+  line-height: 1.8;
+  font-family: 'Cousine';
+}
+
+.course--description li:before,
+.course--description li:after {
+  content: ' ';
+  display: table;
+}
+
+.course--description li:after {
+  clear: both;
+}
+
+.course--description ol li {
+  counter-increment: step-counter;
+}
+
+.course--description ol li:before {
+  content: counter(step-counter);
+  color: #999;
+  font-size: 18px;
+  position: absolute;
+  left: 0;
+  top: 34px;
+}
+
+.course--description ul li:before {
+  content: '';
+  float: left;
+  margin: 9px 0 0 -30px;
+  width: 5px;
+  height: 5px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  display: block;
+}
+
+.course--description h1,
+.course--description h2,
+.course--description h3 {
+  font-family: 'Work Sans', sans-serif;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+.course--description h1 {
+  font-size: 36px;
+}
+
+.course--description h2 {
+  font-size: 30px;
+}
+
+.course--description h3 {
+  font-size: 24px;
+}
+
+.course--description h4 {
+  font-size: 18px;
+  font-weight: 100;
+  margin: 0 0 10px;
+  color: #999;
+  display: block;
+}
+
+.course--stats--list h4 {
+  font-family: 'Cousine';
+  font-weight: 100;
+  color: #999;
+  font-size: 14px;
+  padding: 0 0 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.course--stats--list h3 {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 18px;
+}
+
+.course--stats--list > li {
+  margin-bottom: 50px;
+}
+
+.course--stats--list > li ul {
+  padding-left: 20px;
+}
+
+.course--stats--list > li li {
+  margin-bottom: 15px;
+  list-style-type: circle;
+}
+
+.course--time--input {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}

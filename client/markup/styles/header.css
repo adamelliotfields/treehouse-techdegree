@@ -1,0 +1,57 @@
+.header {
+  background: #57496e;
+  padding: 20px 0;
+  margin-bottom: 30px;
+}
+
+.header--logo {
+  color: #fff;
+  font-size: 24px;
+  padding: 0 15px;
+  margin: 0;
+  display: inline-block;
+}
+
+.header--logo a {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.header--logo a:hover {
+  color: #fff;
+}
+
+.header--logo .selected {
+  color: #fff;
+}
+
+.header--logo .chevron {
+  fill: rgba(255, 255, 255, 0.3);
+  width: 7px;
+  height: auto;
+  margin: 0 10px;
+}
+
+.header nav {
+  float: right;
+  margin-top: 3px;
+}
+
+.header nav a {
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 20px;
+}
+
+.header nav a:hover {
+  color: #fff;
+}
+
+.header nav span {
+  color: #fff;
+  margin-left: 20px;
+}
+
+.signin,
+.signup,
+.signout {
+  margin-top: 60px;
+}
