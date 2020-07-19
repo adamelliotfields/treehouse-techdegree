@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "name": "@treehouse-techdegree/client",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "dompurify": "2.0.12",
+    "localforage": "1.7.4",
+    "marked": "1.1.1",
+    "prop-types": "15.7.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-helmet-async": "1.0.6",
+    "react-router-dom": "5.2.0",
+    "typeface-cousine": "0.0.72",
+    "typeface-work-sans": "0.0.72"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "0.19.1",
+    "react-scripts": "3.4.1",
+    "sass": "1.26.10",
+    "typescript": "3.9.7"
+  }
+}
