@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "name": "treehouse-techdegree",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "concurrently --kill-others-on-fail --handle-input --names \"   api,client\" \"npm -C api start\" \"npm -C client start\"",
+    "postinstall": "concurrently --max-processes 1 --names \"   api,client\" \"npm -C api install\" \"npm -C client install\""
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "2.34.0",
+    "@typescript-eslint/parser": "2.34.0",
+    "babel-eslint": "10.1.0",
+    "concurrently": "5.2.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb": "18.1.0",
+    "eslint-config-airbnb-base": "14.1.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-config-react-app": "5.2.1",
+    "eslint-plugin-flowtype": "4.7.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-react": "7.19.0",
+    "eslint-plugin-react-hooks": "1.7.0",
+    "prettier": "2.0.5",
+    "typescript": "3.9.7"
+  }
+}
