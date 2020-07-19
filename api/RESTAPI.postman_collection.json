@@ -1,0 +1,671 @@
+{
+  "info": {
+    "_postman_id": "9fa79b2f-0673-4a7b-97a1-af48097150d4",
+    "name": "FSJS Techdegree: REST API Project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Courses",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "0f3be661-d740-4bf2-9e06-803765c4aee0",
+            "exec": [
+              "pm.test('should send a 200 status code', () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test('should send 3 courses', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.length).to.eql(3);",
+              "});",
+              "pm.test('should send a user with each course', () => {",
+              "  const json = pm.response.json();",
+              "  const users = json",
+              "    .map(course => course.User)",
+              "    .filter(user => typeof user !== 'undefined');",
+              "  pm.expect(users.length).to.eql(3);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/courses",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "courses"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Course",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "1499b009-c772-4d7c-88b6-9de1a6bac34b",
+            "exec": [
+              "pm.test('should send a 200 status code', () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test('should send a course', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.title).to.eql('Build a Basic Bookcase');",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/courses/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "courses", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create User (Incomplete Data)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "9f801539-37f2-4c0b-8652-ce4914f3b398",
+            "exec": [
+              "pm.test('should send a 400 status code', () => {",
+              "  pm.response.to.have.status(400);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/users",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "604b8730-707b-4f63-88ce-1bccb071b6dc",
+            "exec": [
+              "pm.test('should send a 201 status code', () => {",
+              "  pm.response.to.have.status(201);",
+              "});",
+              "pm.test('should send a user', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.emailAddress).to.eql('john@smith.com');",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"emailAddress\": \"john@smith.com\",\n    \"password\": \"password\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/users",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create User (Existing Email Address)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "1852941c-058e-4ef2-8d0e-f5e570ebc94d",
+            "exec": [
+              "pm.test('should send a 400 status code', () => {",
+              "  pm.response.to.have.status(400);",
+              "});",
+              "pm.test('should send an error message', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.errors[0]).to.eql('emailAddress must be unique');",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"emailAddress\": \"john@smith.com\",\n    \"password\": \"password\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/users",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Users (No Auth)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "de975cb9-b89e-453a-8418-620f0698f94c",
+            "exec": [
+              "pm.test('should send a 401 status code', () => {",
+              "  pm.response.to.have.status(401);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/users",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Users (With Auth)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "d869732b-5fd2-42a2-b473-2c9904096dc6",
+            "exec": [
+              "pm.test('should send a 200 status code', () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test('should send a user', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.id).to.eql(1);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "joepassword",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "joe@smith.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/users",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Course (No Auth, Incomplete Data)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "55fc7123-8265-40e1-867e-97412fe16fe8",
+            "exec": [
+              "pm.test('should send a 401 status code', () => {",
+              "  pm.response.to.have.status(401);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/courses",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "courses"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Course (Incomplete Data)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "198569c6-47a5-46a1-98e3-6c487715f2b7",
+            "exec": [
+              "pm.test('should send a 400 status code', () => {",
+              "  pm.response.to.have.status(400);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "joepassword",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "joe@smith.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/courses",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "courses"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Course (Minimum Data)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "ba486bdf-7f4a-47ac-be09-fc019a53923b",
+            "exec": [
+              "pm.test('should send a 201 status code', () => {",
+              "  pm.response.to.have.status(201);",
+              "});",
+              "pm.test('should send a course', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.id).to.eql(4);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "joepassword",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "joe@smith.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"New Course\",\n    \"description\": \"My course description\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/courses",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "courses"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Course (No Auth, Incomplete Data)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "3cd4117b-2b6c-4008-b80b-30cdebad4ff2",
+            "exec": [
+              "pm.test('should send a 401 status code', () => {",
+              "  pm.response.to.have.status(401);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/courses/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "courses", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Course (Incomplete Data)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "52c3d30e-4591-4bda-a662-f2d437b88b1a",
+            "exec": [
+              "pm.test('should send a 400 status code', () => {",
+              "  pm.response.to.have.status(400);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "joepassword",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "joe@smith.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/courses/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "courses", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Course (Minimum Data)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "b6f30b27-20bb-4920-867e-6919dee89b89",
+            "exec": [
+              "pm.test('should send a 200 status code', () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "joepassword",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "joe@smith.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"New Course Updated Again Hello\",\n    \"description\": \"My course description. And again.\"\n}\n"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/courses/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "courses", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Course (No Auth)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "1b8030dc-fba5-4df4-b24a-8f4bdb469e57",
+            "exec": [
+              "pm.test('should send a 401 status code', () => {",
+              "  pm.response.to.have.status(401);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/courses/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "courses", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Course (With Auth)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "898c0750-a458-4643-854b-1a7872190b25",
+            "exec": [
+              "pm.test('should send a 200 status code', () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "joepassword",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "joe@smith.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/courses/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "courses", "1"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
