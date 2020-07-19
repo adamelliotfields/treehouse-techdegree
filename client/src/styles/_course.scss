@@ -1,0 +1,260 @@
+.course {
+  &--module {
+    background: #7c689b;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    min-height: 107px;
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+
+    &::before,
+    &::after {
+      content: ' ';
+      display: table;
+    }
+
+    &::after {
+      clear: both;
+    }
+
+    &--title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  &--label {
+    font-family: 'Cousine';
+    font-size: 14px;
+    font-weight: 100;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
+
+  &--title {
+    font-size: 18px;
+    color: #fff;
+  }
+
+  &--link {
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    border: 0;
+  }
+
+  &--add {
+    &--module {
+      background: #eee;
+      text-align: center;
+
+      &:hover {
+        .course--add--title {
+          color: #444;
+        }
+
+        .add {
+          fill: #444;
+        }
+      }
+    }
+
+    &--title {
+      color: #999;
+      display: inline-block;
+      font-size: 18px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -55%);
+      -moz-transform: translate(-50%, -55%);
+      -ms-transform: translate(-50%, -55%);
+      transform: translate(-50%, -55%);
+
+      .add {
+        width: 13px;
+        height: auto;
+        margin: 0 5px 0 0;
+        fill: #999;
+      }
+
+      &--input {
+        font-size: 48px;
+        font-weight: bold;
+        font-family: 'Work Sans', sans-serif;
+      }
+    }
+  }
+
+  &--detail {
+    margin-top: 60px;
+  }
+
+  &--header {
+    margin-bottom: 30px;
+
+    p {
+      font-size: 18px;
+      color: #b1a5c4;
+      font-weight: 100;
+    }
+
+    .course--label {
+      font-size: 18px;
+      color: #999;
+    }
+
+    .course--title {
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: #332a40;
+    }
+  }
+
+  &--description {
+    margin-bottom: 30px;
+
+    textarea {
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    ol,
+    ul {
+      list-style-type: none;
+    }
+
+    ol {
+      li {
+        counter-increment: step-counter;
+
+        &::before {
+          content: counter(step-counter);
+          color: #999;
+          font-size: 18px;
+          position: absolute;
+          left: 0;
+          top: 34px;
+        }
+      }
+    }
+
+    ul {
+      li {
+        &::before {
+          content: '';
+          float: left;
+          margin: 9px 0 0 -30px;
+          width: 5px;
+          height: 5px;
+          border: 1px solid #999;
+          border-radius: 10px;
+          display: block;
+        }
+      }
+    }
+
+    li {
+      position: relative;
+      padding-left: 30px;
+      padding: 30px 0 30px 5%;
+      border-top: 1px solid #ccc;
+      font-size: 16px;
+      line-height: 1.8;
+      font-family: 'Cousine';
+
+      &::before,
+      &::after {
+        content: ' ';
+        display: table;
+      }
+
+      &::after {
+        clear: both;
+      }
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Work Sans', sans-serif;
+      color: #222;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+
+    h3 {
+      font-size: 24px;
+    }
+
+    h4 {
+      font-size: 18px;
+      font-weight: 100;
+      margin: 0 0 10px;
+      color: #999;
+      display: block;
+    }
+  }
+
+  &--stats {
+    &--list {
+      h3 {
+        font-family: 'Work Sans', sans-serif;
+        font-size: 18px;
+      }
+
+      h4 {
+        font-family: 'Cousine';
+        font-weight: 100;
+        color: #999;
+        font-size: 14px;
+        padding: 0 0 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      > li {
+        margin-bottom: 50px;
+
+        ul {
+          padding-left: 20px;
+        }
+
+        li {
+          margin-bottom: 15px;
+          list-style-type: circle;
+        }
+      }
+    }
+  }
+
+  &--time {
+    &--input {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+}

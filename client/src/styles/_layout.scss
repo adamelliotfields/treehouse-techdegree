@@ -1,0 +1,37 @@
+$grid-sizes: (
+  25: 25%,
+  33: 33.3333333333%,
+  66: 66.6666666666%,
+  100: 100%,
+);
+
+.bounds {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.grid {
+  float: left;
+  padding: 0 15px;
+  box-sizing: border-box;
+
+  &-right {
+    float: right;
+  }
+}
+
+@each $size, $width in $grid-sizes {
+  .grid-#{$size} {
+    @extend .grid;
+    width: $width;
+  }
+}
+
+.centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.pad-bottom {
+  padding-bottom: 40px;
+}

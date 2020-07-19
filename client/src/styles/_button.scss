@@ -1,0 +1,44 @@
+.button {
+  background: #7c689b;
+  color: #fff;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 18px;
+  padding: 15px 30px;
+  border: 0;
+  margin-right: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  display: inline-block;
+  box-sizing: border-box;
+  -webkit-transition: background 0.2s;
+  -moz-transition: background 0.2s;
+  -ms-transition: background 0.2s;
+  -o-transition: background 0.2s;
+  transition: background 0.2s;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:not(.button-secondary) {
+    &:hover {
+      background: #63537d;
+    }
+  }
+
+  &-secondary {
+    color: #7c689b;
+    background: none;
+    box-shadow: 0 0 0 2px #7c689b inset;
+    -webkit-transition: box-shadow 0.2s, color 0.2s;
+    -moz-transition: box-shadow 0.2s, color 0.2s;
+    -ms-transition: box-shadow 0.2s, color 0.2s;
+    -o-transition: box-shadow 0.2s, color 0.2s;
+    transition: box-shadow 0.2s, color 0.2s;
+
+    &:hover {
+      color: #63537d;
+      box-shadow: 0 0 0 2px #63537d inset;
+    }
+  }
+}

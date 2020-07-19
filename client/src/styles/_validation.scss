@@ -1,0 +1,15 @@
+.validation {
+  &--errors {
+    &--label {
+      color: #7c689b;
+      font-size: 28px;
+    }
+  }
+
+  &-errors {
+    ul {
+      color: #7c689b;
+      padding: 15px 0 40px 10px;
+    }
+  }
+}

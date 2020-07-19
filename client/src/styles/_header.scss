@@ -1,0 +1,55 @@
+.header {
+  background: #57496e;
+  padding: 20px 0;
+  margin-bottom: 30px;
+
+  &--logo {
+    color: #fff;
+    font-size: 24px;
+    padding: 0 15px;
+    margin: 0;
+    display: inline-block;
+
+    & a {
+      color: rgba(255, 255, 255, 0.5);
+
+      &:hover,
+      &.active {
+        color: #fff;
+      }
+    }
+
+    .chevron {
+      fill: rgba(255, 255, 255, 0.3);
+      width: 7px;
+      height: auto;
+      margin: 0 10px;
+    }
+  }
+
+  nav {
+    float: right;
+    margin-top: 3px;
+
+    a {
+      color: rgba(255, 255, 255, 0.5);
+      margin-left: 20px;
+
+      &:hover,
+      &.active {
+        color: #fff;
+      }
+    }
+
+    span {
+      color: #fff;
+      margin-left: 20px;
+    }
+  }
+}
+
+.signin,
+.signup,
+.signout {
+  margin-top: 60px;
+}

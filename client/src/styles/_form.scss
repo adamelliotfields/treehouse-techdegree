@@ -1,0 +1,8 @@
+.input-title {
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-moz-placeholder,
+  &:-ms-input-placeholder {
+    font-weight: bold;
+  }
+}

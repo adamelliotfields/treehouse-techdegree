@@ -1,0 +1,22 @@
+.actions {
+  &--bar {
+    border-bottom: 1px solid #d5f9fe;
+    background: #f8feff;
+    padding: 20px 0;
+    margin-top: -30px;
+
+    &::before,
+    &::after {
+      content: ' ';
+      display: table;
+    }
+
+    &::after {
+      clear: both;
+    }
+
+    .button {
+      margin-right: 15px;
+    }
+  }
+}
