@@ -1,0 +1,25 @@
+{
+  "include": ["client/**/*.{js,jsx}", "api/**/*.js"],
+  "exclude": [
+    "api/node_modules/**",
+    "client/build/**",
+    "client/coverage/**",
+    "client/node_modules/**"
+  ],
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react"
+  }
+}
