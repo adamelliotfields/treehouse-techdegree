@@ -57,9 +57,14 @@ class App extends Component {
       if (user !== null && this.state.user === null) {
         this.setState({
           user: { ...user, password: atob(user.password) },
-          loading: false,
         });
       }
+    }
+
+    if (this.state.loading) {
+      this.setState({
+        loading: false,
+      });
     }
   }
 
