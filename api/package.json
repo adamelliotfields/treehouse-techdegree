@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "name": "@treehouse-techdegree/api",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node index.js",
+    "start:watch": "nodemon index.js",
+    "start:verbose": "nodemon -V -x \"cross-env-shell ENABLE_DB_LOGGING=true node index.js\"",
+    "seed": "node seed/index.js",
+    "test": "newman run RESTAPI.postman_collection.json --delay-request=100",
+    "clean": "rimraf fsjstd-restapi.db"
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "consola": "2.14.0",
+    "cors": "2.8.5",
+    "cross-env": "7.0.2",
+    "express": "4.17.1",
+    "http-errors": "1.8.0",
+    "morgan": "1.10.0",
+    "passport": "0.4.1",
+    "passport-http": "0.3.0",
+    "sequelize": "6.3.3",
+    "sqlite3": "5.0.0",
+    "yup": "0.29.1"
+  },
+  "devDependencies": {
+    "newman": "5.1.2",
+    "nodemon": "2.0.4",
+    "rimraf": "3.0.2"
+  }
+}
