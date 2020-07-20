@@ -4,13 +4,14 @@ const { Course, User } = require('../db');
 const { courseSchema } = require('../schemas');
 
 async function updateCourseById(req, res, next) {
-  const id = parseInt(req.params.id, 10);
-  const { user } = req;
-  const { title, description, estimatedTime, materialsNeeded } = req.body;
-
-  if (Number.isNaN(id)) return next(createError(404));
+  const { body, params, user } = req;
+  const { title, description, estimatedTime, materialsNeeded } = body;
 
   try {
+    const id = parseInt(params.id, 10);
+
+    if (Number.isNaN(id)) return next(createError(404));
+
     const course = await Course.findByPk(id);
 
     // Course wasn't found.

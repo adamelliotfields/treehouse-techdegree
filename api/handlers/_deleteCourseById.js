@@ -4,12 +4,13 @@ const http = require('http');
 const { Course } = require('../db');
 
 async function deleteCourseById(req, res, next) {
-  const id = parseInt(req.params.id, 10);
-  const { user } = req;
-
-  if (Number.isNaN(id)) return next(createError(404));
+  const { params, user } = req;
 
   try {
+    const id = parseInt(params.id, 10);
+
+    if (Number.isNaN(id)) return next(createError(404));
+
     const course = await Course.findByPk(id);
 
     // Course wasn't found.

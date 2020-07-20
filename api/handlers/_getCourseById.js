@@ -3,13 +3,13 @@ const createError = require('http-errors');
 const { Course, User } = require('../db');
 
 async function getCourseById(req, res, next) {
-  // Request params are always strings.
-  const id = parseInt(req.params.id, 10);
-
-  // We will get a database error if the ID parses to NaN (e.g., GET /courses/foo).
-  if (Number.isNaN(id)) return next(createError(404));
-
   try {
+    // Request params are always strings.
+    const id = parseInt(req.params.id, 10);
+
+    // We will get a database error if the ID parses to NaN (e.g., GET /courses/foo).
+    if (Number.isNaN(id)) return next(createError(404));
+
     // SELECT
     //   c.id,
     //   c.title,
