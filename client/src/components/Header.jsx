@@ -4,13 +4,13 @@ import { NavLink } from 'react-router-dom';
 
 // This is our "nav bar" that displays a welcome message and sign-out link if there is an
 // authenticated user in App state, or sign-up/sign-in links otherwise.
-function Header({ user }) {
+function Header({ brand, user }) {
   return (
     <div className="header">
       <div className="bounds">
         <h1 className="header--logo">
           <NavLink exact to="/">
-            Courses
+            {brand}
           </NavLink>
         </h1>
 
@@ -41,6 +41,7 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
+  brand: PropTypes.string.isRequired,
   user: PropTypes.shape({
     firstName: PropTypes.string,
     lastName: PropTypes.string,
