@@ -51,18 +51,11 @@ class App extends Component {
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err.message);
-      // The `finally` block will always run, even if there was an error.
-    } finally {
-      // Be careful calling setState in componentDidMount as you don't want an infinite loop.
-      if (user !== null && this.state.user === null) {
-        this.setState({
-          user: { ...user, password: atob(user.password) },
-        });
-      }
     }
 
     if (this.state.loading) {
       this.setState({
+        user: user === null ? user : { ...user, password: atob(user.password) },
         loading: false,
       });
     }
@@ -103,13 +96,7 @@ class App extends Component {
     const { user, loading } = this.state;
 
     if (loading) {
-      return (
-        <div className="header">
-          <div className="bounds">
-            <h1 className="header--logo">Loading...</h1>
-          </div>
-        </div>
-      );
+      return <Header brand="Loading..." user={null} />;
     }
 
     // React Router's `Switch` component renders the first component that matches the path, which is
@@ -117,7 +104,7 @@ class App extends Component {
     return (
       <Fragment>
         <Helmet titleTemplate="%s | Treehouse Courses" />
-        <Header user={user} />
+        <Header brand="Courses" user={user} />
         <Switch>
           <Route exact path="/" component={Courses} />
           <PrivateRoute
