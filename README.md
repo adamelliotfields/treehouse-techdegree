@@ -25,14 +25,16 @@ The `postinstall` script will install all dependencies for the API server and Re
 run into issues, please try installing the dependencies for each app individually.
 
 ```bash
-cd api
+# If you're using the ESLint and/or Prettier extensions in VS Code, then you need to install the
+# root dependencies.
+npm install --ignore-scripts
 
+# Install API dependencies.
+cd api
 npm install
 
-# Open a new terminal tab (Command+T in iTerm2).
-
-cd client
-
+# Install Client dependencies.
+cd ../client
 npm install
 ```
 
@@ -48,13 +50,11 @@ running the server and client in separate terminal tabs.
 
 ```bash
 cd api
-
 npm start
 
 # Open a new terminal tab (Command+T in iTerm2).
 
 cd client
-
 npm start
 ```
 
@@ -135,6 +135,45 @@ See [`client/grading_criteria.pdf`](./client/grading_criteria.pdf).
     - The `PrivateRoute` component renders a `Route` component if the user is logged-in and a `Redirect` component to `/signin` otherwise.
     - The `PrivateRoute` component is used for the `/courses/create` and `/courses/:id/update` routes.
 
+## Testing
+
+The API server has a decent E2E test suite using Postman's Newman CLI. Note that the server must be
+running and the tests expect the database to be in a freshly-seeded state. In between tests, you can
+run `npm run clean` and `npm run seed` to drop and re-seed the database.
+
+The client unit tests only cover a couple components so far, but demonstrate how to use React DOM's
+built-in testing utilities with Jest.
+
+### Testing 403 Errors
+
+The `UpdateCourse` component will redirect to `/forbidden` and render the `Forbidden` component.
+
+In order to test the handling of 403 errors, you must be signed-in, otherwise the `PrivateRoute`
+component will redirect you to `/signin`.
+
+If you are signed-in, simply go to `/courses/:id/update` in your browser, where `:id` is the ID of a
+course you did not create.
+
+### Testing 404 Errors
+
+The `CourseDetail` and `UpdateCourse` components will redirect to `/notfound` and render the
+`NotFound` component if the course ID in the URL does not match any courses in the database.
+
+All other 404 errors will render the `NotFound` component without redirecting.
+
+### Testing 500 Errors
+
+All [route handlers](./api/handlers) are wrapped in try-catch blocks. Simply throw an error at the
+beginning of the `try` block and the error handling middleware will send a 500 response to the
+client.
+
+Note that if you throw outside the `try` block, the server will hang
+**because Express does not handle unhandled Promise rejections for you.**
+
+Alternatively, you can throw an error inside of the `try` block in `componentDidMount` to trigger
+the error handler, just make sure you comment out the code below it so ESLint doesn't complain about
+unreachable code.
+
 ## FAQ
 
 ### What does `?.` and `??` do?
@@ -163,6 +202,11 @@ development.
 
 Note that per the requirements, the API server is using CORS middleware, so sending a request to
 `localhost:3001` from `localhost:3000` will work as well.
+
+### Why do you use `<Fragment>` instead of `<>`?
+
+I've had issues with the Auto Rename Tag extension for VS Code when using the fragment shorthand. I
+also find `<Fragment>` easier to read.
 
 ### Why are you not using hooks?
 
