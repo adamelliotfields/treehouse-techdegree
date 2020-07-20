@@ -6,6 +6,54 @@ import { Link } from 'react-router-dom';
 import { deleteCourseByIdWithAuth, getCourseById } from '../services';
 import { renderHtmlFromMarkdown } from '../utils';
 
+function ActionsBar({ course, user, match, onClick }) {
+  return (
+    <div className="actions--bar">
+      <div className="bounds">
+        <div className="grid-100">
+          {course !== null && user !== null && course.User.id === user.id && (
+            // Only display the buttons if the user is authorized to edit/delete the course.
+            <span>
+              <Link className="button" to={`/courses/${match.params.id}/update`}>
+                Update Course
+              </Link>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events */}
+              <a className="button" role="button" tabIndex="0" onClick={onClick}>
+                Delete Course
+              </a>
+            </span>
+          )}
+          <Link className="button button-secondary" to="/">
+            Return to List
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ActionsBar.defaultProps = {
+  course: null,
+  user: null,
+};
+
+ActionsBar.propTypes = {
+  course: PropTypes.shape({
+    User: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+  }),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+  onClick: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+  }),
+};
+
 // This component renders the course description, estimated time, and materials needed. The
 // aforementioned properties can be written in markdown and they will be rendered as HTML. If there
 // is an authenticated user in App state, and the user has authorization to edit/delete the course,
@@ -40,6 +88,12 @@ class CourseDetail extends Component {
   // Handle data fetching errors by redirecting to /notfound or /error accordingly.
   handleError = (error) => {
     const { history } = this.props;
+
+    // The API could respond with a 403 if an unauthorized user sends a delete request.
+    if (typeof error?.response?.status !== 'undefined' && error.response.status === 403) {
+      history.push('/forbidden');
+      return;
+    }
 
     if (typeof error?.response?.status !== 'undefined' && error.response.status === 404) {
       history.push('/notfound');
@@ -82,15 +136,7 @@ class CourseDetail extends Component {
     if (loading) {
       return (
         <div>
-          <div className="actions--bar">
-            <div className="bounds">
-              <div className="grid-100">
-                <Link className="button button-secondary" to="/">
-                  Return to List
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ActionsBar match={match} onClick={this.handleDeleteButtonClick} />
           <div className="bounds course--detail">
             <div className="grid-66">
               <div className="course--header">
@@ -109,32 +155,12 @@ class CourseDetail extends Component {
           <title>{course !== null ? course.title : 'Course'}</title>
         </Helmet>
         <div>
-          <div className="actions--bar">
-            <div className="bounds">
-              <div className="grid-100">
-                {course !== null && user !== null && course.User.id === user.id && (
-                  // Only display the buttons if the user is authorized to edit/delete the course.
-                  <span>
-                    <Link className="button" to={`/courses/${match.params.id}/update`}>
-                      Update Course
-                    </Link>
-                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events */}
-                    <a
-                      className="button"
-                      role="button"
-                      tabIndex="0"
-                      onClick={this.handleDeleteButtonClick}
-                    >
-                      Delete Course
-                    </a>
-                  </span>
-                )}
-                <Link className="button button-secondary" to="/">
-                  Return to List
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ActionsBar
+            course={course}
+            user={user}
+            match={match}
+            onClick={this.handleDeleteButtonClick}
+          />
           <div className="bounds course--detail">
             <div className="grid-66">
               <div className="course--header">

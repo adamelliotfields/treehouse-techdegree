@@ -47,8 +47,15 @@ class UpdateCourse extends Component {
     }
   }
 
+  // The /api/courses/:id/update route handler can respond with a 400, 403, 404, or 500 error.
   handleError = (error) => {
     const { history } = this.props;
+
+    // Redirect to `/notfound` if the server responds with a forbidden error.
+    if (typeof error?.response?.status !== 'undefined' && error.response.status === 403) {
+      history.push('/forbidden');
+      return;
+    }
 
     // Redirect to `/notfound` if the course isn't found.
     if (typeof error?.response?.status !== 'undefined' && error.response.status === 404) {
@@ -65,7 +72,7 @@ class UpdateCourse extends Component {
       return;
     }
 
-    // Redirect to `/error` for any other errors.
+    // Redirect to `/error` for any other errors (500 status code).
     history.push('/error');
   };
 

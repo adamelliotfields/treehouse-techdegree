@@ -5,6 +5,37 @@ import { Link } from 'react-router-dom';
 
 import { getAllCourses } from '../services';
 
+function Course({ id, title }) {
+  const children = (
+    <Fragment>
+      <h4 className="course--label">Course</h4>
+      <h3 className="course--title">{title}</h3>
+    </Fragment>
+  );
+
+  // Reusing the course styles for the loading component.
+  return (
+    <div className="grid-33">
+      {id === -1 ? (
+        <span className="course--module course--link">{children}</span>
+      ) : (
+        <Link className="course--module course--link" to={`/courses/${id}`}>
+          {children}
+        </Link>
+      )}
+    </div>
+  );
+}
+
+Course.defaultProps = {
+  id: -1,
+};
+
+Course.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string.isRequired,
+};
+
 // This component renders a list of courses from the database and forwards to /notfound and /error
 // if there are any errors fetching the courses. Even if there are no courses, it will always render
 // a link to /courses/create.
@@ -28,16 +59,16 @@ class Courses extends Component {
         loading: false,
       });
     } catch (error) {
-      const { history } = this.props;
-
-      if (typeof error.response.status !== 'undefined' && error.response.status === 404) {
-        history.push('/notfound');
-        return;
-      }
-
-      history.push('/error');
+      this.handleError(error);
     }
   }
+
+  // Handle data fetching errors by redirecting to /error.
+  handleError = () => {
+    const { history } = this.props;
+
+    history.push('/error');
+  };
 
   render() {
     const { courses, loading } = this.state;
@@ -45,12 +76,7 @@ class Courses extends Component {
     if (loading) {
       return (
         <div className="bounds">
-          <div className="grid-33">
-            <span className="course--module course--link">
-              <h4 className="course--label">Course</h4>
-              <h3 className="course--title">Loading...</h3>
-            </span>
-          </div>
+          <Course title="Loading..." />
         </div>
       );
     }
@@ -63,12 +89,7 @@ class Courses extends Component {
 
         <div className="bounds">
           {courses.map((course) => (
-            <div className="grid-33" key={course.id}>
-              <Link className="course--module course--link" to={`/courses/${course.id}`}>
-                <h4 className="course--label">Course</h4>
-                <h3 className="course--title">{course.title}</h3>
-              </Link>
-            </div>
+            <Course key={course.id} id={course.id} title={course.title} />
           ))}
 
           <div className="grid-33">
