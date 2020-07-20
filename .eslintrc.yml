@@ -1,10 +1,1 @@
-extends:
-  - react-app
-  - airbnb
-  - plugin:prettier/recommended
-rules:
-  react/destructuring-assignment: off
-  react/jsx-fragments: off
-  react/jsx-one-expression-per-line: off
-  react/jsx-props-no-spreading: off
-  react/no-danger: off
+extends: './client/.eslintrc.yml'
